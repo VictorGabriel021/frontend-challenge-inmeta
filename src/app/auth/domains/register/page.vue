@@ -1,0 +1,69 @@
+<script setup lang="ts">
+import { useRegisterViewModel } from '@/app/auth/domains/register/useRegisterViewModel'
+
+import Button from '@/components/ui/button/Button.vue'
+
+import Input from '@/components/ui/input/Input.vue'
+import PasswordInput from '@/components/ui/input/PasswordInput.vue'
+
+import { useRouter } from 'vue-router'
+import FormField from '@/components/ui/form/FormField.vue'
+import FormLabel from '@/components/ui/form/FormLabel.vue'
+import { Mail, User } from 'lucide-vue-next'
+
+const router = useRouter()
+const { form, errors, register, loading } = useRegisterViewModel()
+</script>
+
+<template>
+  <div class="min-h-screen flex items-center justify-center bg-background">
+    <div
+      class="w-full max-w-md border-[rgb(var(--color-border))] bg-[rgb(var(--color-card))] p-8 rounded-xl shadow-lg"
+    >
+      <h1 class="text-2xl font-bold text-center mb-6">Criar Conta</h1>
+
+      <form @submit.prevent="register" class="space-y-4">
+        <FormField :error="errors.email?.[0]">
+          <FormLabel>Nome</FormLabel>
+          <Input v-model="form.name" placeholder="Digite seu nome" :error="!!errors.name">
+            <template #prefix>
+              <User class="w-4 h-4 text-[rgb(var(--color-foreground))]" /> </template
+          ></Input>
+        </FormField>
+
+        <FormField :error="errors.email?.[0]">
+          <FormLabel>Email</FormLabel>
+          <Input
+            v-model="form.email"
+            type="email"
+            placeholder="Digite seu email"
+            :error="!!errors.email"
+          >
+            <template #prefix>
+              <Mail class="w-4 h-4 text-[rgb(var(--color-foreground))]" /> </template
+          ></Input>
+        </FormField>
+
+        <FormField :error="errors.password?.[0]">
+          <FormLabel>Senha</FormLabel>
+          <PasswordInput
+            v-model="form.password"
+            placeholder="Digite sua senha"
+            :error="!!errors.password"
+          />
+        </FormField>
+
+        <Button :disabled="loading" class="w-full">
+          {{ loading ? 'Criando...' : 'Criar Conta' }}
+        </Button>
+
+        <p class="text-sm text-center mt-4 text-muted-foreground">
+          Já tem conta?
+          <span class="text-primary cursor-pointer hover:underline" @click="router.push('/login')">
+            Voltar para login
+          </span>
+        </p>
+      </form>
+    </div>
+  </div>
+</template>

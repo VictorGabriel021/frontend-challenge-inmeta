@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-background: 248 250 252;
+  --color-foreground: 15 23 42;
+
+  --color-card: 255 255 255;
+  --color-primary: 79 70 229;
+  --color-border: 226 232 240;
+}
+
+.dark {
+  --color-background: 15 23 42;
+  --color-foreground: 241 245 249;
+
+  --color-card: 30 41 59;
+  --color-primary: 129 140 248;
+  --color-border: 51 65 85;
+}
+
+body {
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+}
