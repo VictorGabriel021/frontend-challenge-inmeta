@@ -8,11 +8,11 @@ import Button from '@/components/ui/button/Button.vue'
 
 import { useMyCardsViewModel } from './useMyCardsViewModel'
 
-const { loading, userCards, fetchUserCards } = useMyCardsViewModel()
+const vm = useMyCardsViewModel()
 const open = ref(false)
 
 onMounted(() => {
-  fetchUserCards()
+  vm.fetchUserCards()
 })
 </script>
 
@@ -24,14 +24,14 @@ onMounted(() => {
       <Button @click="open = true"> Adicionar Carta </Button>
     </div>
 
-    <div v-if="loading" class="text-center py-20">Carregando...</div>
+    <div v-if="vm.state.loading" class="text-center py-20">Carregando...</div>
 
-    <div v-else-if="!userCards.length" class="text-center py-20 opacity-70">
+    <div v-else-if="!vm.state.userCards.length" class="text-center py-20 opacity-70">
       Você ainda não possui cartas.
     </div>
 
-    <CardGrid v-else :cards="userCards" />
+    <CardGrid v-else :cards="vm.state.userCards" />
 
-    <AddCardDialog v-model:open="open" />
+    <AddCardDialog v-model:open="open" :vm="vm" />
   </div>
 </template>

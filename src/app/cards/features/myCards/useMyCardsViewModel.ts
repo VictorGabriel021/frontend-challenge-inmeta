@@ -1,4 +1,4 @@
-import { reactive, toRefs } from 'vue'
+import { reactive } from 'vue'
 
 import { cardsService } from '@/services/cards.service'
 
@@ -63,7 +63,7 @@ export function useMyCardsViewModel() {
   }
 
   return {
-    ...toRefs(state),
+    state,
     fetchUserCards,
     loadMore,
     fetchInitial,

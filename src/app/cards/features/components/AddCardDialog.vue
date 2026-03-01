@@ -8,15 +8,14 @@ import Dialog from '@/components/ui/dialog/Dialog.vue'
 import DialogContent from '@/components/ui/dialog/DialogContent.vue'
 import { useMyCardsViewModel } from '../myCards/useMyCardsViewModel'
 
-const props = defineProps<{ open: boolean }>()
+const { open, vm } = defineProps<{ open: boolean; vm: ReturnType<typeof useMyCardsViewModel> }>()
 const emit = defineEmits(['update:open'])
 
-const { fetchInitial, reset, addToUser, loading, allCards, more, loadMore, loadingMore } =
-  useMyCardsViewModel()
+const { fetchInitial, reset, addToUser, loadMore, state } = vm
 const selected = ref<string[]>([])
 
 watch(
-  () => props.open,
+  () => open,
   (isOpen) => {
     if (isOpen) {
       fetchInitial()
@@ -51,12 +50,14 @@ async function handleAdd() {
     >
       <h2 class="text-xl font-semibold mb-4">Adicionar Cartas</h2>
 
-      <div v-if="loading" class="flex-1 flex items-center justify-center">Carregando cartas...</div>
+      <div v-if="state.loading" class="flex-1 flex items-center justify-center">
+        Carregando cartas...
+      </div>
 
       <div v-else class="flex-1 overflow-y-auto">
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
           <CardItem
-            v-for="card in allCards"
+            v-for="card in state.allCards"
             :key="card.id"
             :card="card"
             selectable
@@ -65,8 +66,8 @@ async function handleAdd() {
           />
         </div>
 
-        <div v-if="more" class="flex justify-center mt-8">
-          <Button variant="outline" :loading="loadingMore" @click="loadMore">
+        <div v-if="state.more" class="flex justify-center mt-8">
+          <Button variant="outline" :loading="state.loadingMore" @click="loadMore">
             Carregar mais
           </Button>
         </div>
