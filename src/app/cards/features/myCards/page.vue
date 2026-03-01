@@ -8,6 +8,8 @@ import Button from '@/components/ui/button/Button.vue'
 
 import { useMyCardsViewModel } from './useMyCardsViewModel'
 
+import { Loader2 } from 'lucide-vue-next'
+
 defineOptions({ name: 'MyCardsPage' })
 
 const vm = useMyCardsViewModel()
@@ -26,8 +28,9 @@ onMounted(() => {
       <Button @click="open = true"> Adicionar Carta </Button>
     </div>
 
-    <div v-if="vm.state.loading" class="text-center py-20">Carregando...</div>
-
+    <div v-if="vm.state.loading" class="flex-1 flex justify-center items-center">
+      <Loader2 class="w-30 h-30 animate-spin" />
+    </div>
     <div v-else-if="!vm.state.userCards.length" class="text-center py-20 opacity-70">
       Você ainda não possui cartas.
     </div>

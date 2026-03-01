@@ -51,7 +51,7 @@ const { form, touched, errors, login, loading } = useLoginViewModel()
           />
         </FormField>
 
-        <Button class="w-full" :disabled="loading" @click="login">
+        <Button class="w-full" :disabled="loading" :loading="loading" @click="login">
           {{ loading ? 'Entrando...' : 'Entrar' }}
         </Button>
 

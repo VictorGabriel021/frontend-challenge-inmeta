@@ -6,7 +6,10 @@ import CardItem from './CardItem.vue'
 import Button from '@/components/ui/button/Button.vue'
 import Dialog from '@/components/ui/dialog/Dialog.vue'
 import DialogContent from '@/components/ui/dialog/DialogContent.vue'
+
 import { useMyCardsViewModel } from '../myCards/useMyCardsViewModel'
+
+import { Loader2 } from 'lucide-vue-next'
 
 const { open, vm } = defineProps<{ open: boolean; vm: ReturnType<typeof useMyCardsViewModel> }>()
 const emit = defineEmits(['update:open'])
@@ -51,11 +54,11 @@ async function handleAdd() {
       <h2 class="text-xl font-semibold mb-4">Adicionar Cartas</h2>
 
       <div v-if="state.loading" class="flex-1 flex items-center justify-center">
-        Carregando cartas...
+        <Loader2 class="w-30 h-30 animate-spin" />
       </div>
 
       <div v-else class="flex-1 overflow-y-auto">
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
           <CardItem
             v-for="card in state.allCards"
             :key="card.id"
@@ -78,7 +81,11 @@ async function handleAdd() {
       </div>
 
       <div class="flex justify-end mt-6">
-        <Button :disabled="!selected.length" @click="handleAdd">
+        <Button
+          :disabled="!selected.length || vm.state.loading"
+          :loading="vm.state.loading"
+          @click="handleAdd"
+        >
           Adicionar {{ selected.length }}
         </Button>
       </div>

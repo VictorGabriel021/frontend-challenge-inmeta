@@ -64,7 +64,7 @@ const { form, touched, errors, register, loading } = useRegisterViewModel()
           />
         </FormField>
 
-        <Button :disabled="loading" class="w-full">
+        <Button :disabled="loading" :loading="loading" class="w-full">
           {{ loading ? 'Criando...' : 'Criar Conta' }}
         </Button>
 
