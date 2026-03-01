@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRegisterViewModel } from '@/app/auth/domains/register/useRegisterViewModel'
+import { useRegisterViewModel } from '@/app/auth/features/register/useRegisterViewModel'
 
 import Button from '@/components/ui/button/Button.vue'
 
