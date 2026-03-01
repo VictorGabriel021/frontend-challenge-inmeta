@@ -10,7 +10,12 @@ defineProps<{
   class?: string
 }>()
 
-defineEmits(['update:modelValue'])
+defineOptions({
+  inheritAttrs: false,
+  name: 'InputCustom',
+})
+
+defineEmits(['update:modelValue', 'focus'])
 </script>
 
 <template>
@@ -23,10 +28,12 @@ defineEmits(['update:modelValue'])
     </span>
 
     <input
+      v-bind="$attrs"
       :type="type || 'text'"
       :value="modelValue"
       :disabled="disabled"
       @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+      @focus="$emit('focus')"
       :placeholder="placeholder"
       :class="
         cn(
@@ -36,7 +43,6 @@ defineEmits(['update:modelValue'])
           error ? 'border-red-500 focus-visible:ring-red-500' : 'border-[rgb(var(--color-border))]',
           $slots.prefix && 'pl-10',
           $slots.suffix && 'pr-10',
-          $attrs.class,
         )
       "
     />

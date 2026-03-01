@@ -1,7 +1,11 @@
 import http from '@/core/http/axios'
 
-import type { LoginForm, ResponseLoginForm } from '@/app/auth/domains/login/login.types'
-import type { RegisterForm, ResponseRegisterForm } from '@/app/auth/domains/register/register.types'
+import type { LoginForm, ResponseLoginForm } from '@/app/auth/features/login/login.types'
+
+import type {
+  RegisterForm,
+  ResponseRegisterForm,
+} from '@/app/auth/features/register/register.types'
 
 export const authService = {
   async login(payload: LoginForm): Promise<ResponseLoginForm> {

@@ -8,17 +8,26 @@ import { authService } from '@/services/auth.service'
 
 import { toast } from 'vue-sonner'
 
-import { schema } from './register.validations'
+import { schema } from './login.validations'
 
-export function useRegisterViewModel() {
+import type { LoginFormErrors } from './login.types'
+
+export function useLoginViewModel() {
   const router = useRouter()
   const authStore = useAuthStore()
 
   const form = reactive({
-    name: '',
     email: '',
     password: '',
   })
+
+  const touched = reactive({
+    email: false,
+    password: false,
+  })
+
+  const errors = ref<LoginFormErrors>({})
+  const loading = ref(false)
 
   watch(
     form,
@@ -34,30 +43,29 @@ export function useRegisterViewModel() {
     { deep: true },
   )
 
-  const errors = ref<Record<string, string[]>>({})
-  const loading = ref(false)
-
-  async function register() {
+  async function login() {
     errors.value = {}
+    touched.email = true
+    touched.password = true
 
     const result = schema.safeParse(form)
 
     if (!result.success) {
       errors.value = result.error.flatten().fieldErrors
+
       return
     }
 
     try {
       loading.value = true
 
-      const response = await authService.register(result.data)
+      const response = await authService.login(result.data)
 
       authStore.setAuth(response.user, response.token)
 
-      toast.success('Conta criada com sucesso!')
       router.replace('/')
-    } catch (error: any) {
-      toast.error(error.response?.data?.message || 'Erro ao registrar')
+    } catch (error) {
+      toast.error('Email ou senha inválidos')
     } finally {
       loading.value = false
     }
@@ -65,8 +73,9 @@ export function useRegisterViewModel() {
 
   return {
     form,
+    touched,
     errors,
-    register,
+    login,
     loading,
   }
 }

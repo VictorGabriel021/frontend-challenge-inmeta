@@ -11,8 +11,10 @@ import Button from '@/components/ui/button/Button.vue'
 
 import { Mail } from 'lucide-vue-next'
 
+defineOptions({ name: 'LoginPage' })
+
 const router = useRouter()
-const { form, errors, login, loading } = useLoginViewModel()
+const { form, touched, errors, login, loading } = useLoginViewModel()
 </script>
 
 <template>
@@ -23,29 +25,33 @@ const { form, errors, login, loading } = useLoginViewModel()
       <h1 class="text-2xl font-bold text-center mb-6">Login</h1>
 
       <form @submit.prevent="login" class="space-y-4">
-        <FormField :error="errors.email?.[0]">
+        <FormField :error="touched.email ? errors.email?.[0] : ''">
           <FormLabel>Email</FormLabel>
           <Input
             v-model="form.email"
             type="email"
             placeholder="Digite seu email"
-            :error="!!errors.email"
+            :error="!!errors.email && touched.email"
+            autocomplete="current-email"
+            @focus="touched.email = true"
           >
             <template #prefix>
               <Mail class="w-4 h-4 text-[rgb(var(--color-foreground))]" /> </template
           ></Input>
         </FormField>
 
-        <FormField :error="errors.password?.[0]">
+        <FormField :error="touched.password ? errors.password?.[0] : ''">
           <FormLabel>Senha</FormLabel>
           <PasswordInput
             v-model="form.password"
             placeholder="Digite sua senha"
-            :error="!!errors.password"
+            :error="!!errors.password && touched.password"
+            autocomplete="current-password"
+            @focus="touched.password = true"
           />
         </FormField>
 
-        <Button class="w-full" :disabled="loading" @click="login">
+        <Button class="w-full" :disabled="loading" :loading="loading" @click="login">
           {{ loading ? 'Entrando...' : 'Entrar' }}
         </Button>
 

@@ -9,7 +9,13 @@ export type LoginSchema = z.ZodObject<
 >
 
 export type LoginForm = z.infer<LoginSchema>
+export type LoginFormErrors = Partial<Record<keyof LoginForm, string[]>>
 
 export type ResponseLoginForm = {
-  userId: string
+  token: string
+  user: {
+    id: string
+    name: string
+    email: string
+  }
 }

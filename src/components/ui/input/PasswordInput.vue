@@ -24,7 +24,6 @@ defineEmits(['update:modelValue'])
     :error="error"
     @update:model-value="$emit('update:modelValue', $event)"
   >
-    >
     <template #prefix>
       <Lock class="w-4 h-4 text-[rgb(var(--color-foreground))]" />
     </template>

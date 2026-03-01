@@ -1,6 +1,8 @@
 <script setup lang="ts">
 defineProps<{ open: boolean }>()
 defineEmits(['update:open'])
+
+defineOptions({ name: 'DialogCustom' })
 </script>
 
 <template>
