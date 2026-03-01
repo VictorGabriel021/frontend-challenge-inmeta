@@ -8,6 +8,8 @@ import Button from '@/components/ui/button/Button.vue'
 
 import { useMyCardsViewModel } from './useMyCardsViewModel'
 
+defineOptions({ name: 'MyCardsPage' })
+
 const vm = useMyCardsViewModel()
 const open = ref(false)
 

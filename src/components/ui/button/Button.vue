@@ -3,6 +3,8 @@ defineProps<{
   variant?: 'default' | 'outline' | 'destructive'
   disabled?: boolean
 }>()
+
+defineOptions({ name: 'ButtonCustom' })
 </script>
 
 <template>

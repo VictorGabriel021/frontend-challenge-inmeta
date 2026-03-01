@@ -10,6 +10,11 @@ defineProps<{
   class?: string
 }>()
 
+defineOptions({
+  inheritAttrs: false,
+  name: 'InputCustom',
+})
+
 defineEmits(['update:modelValue'])
 </script>
 
@@ -23,6 +28,7 @@ defineEmits(['update:modelValue'])
     </span>
 
     <input
+      v-bind="$attrs"
       :type="type || 'text'"
       :value="modelValue"
       :disabled="disabled"
@@ -36,7 +42,6 @@ defineEmits(['update:modelValue'])
           error ? 'border-red-500 focus-visible:ring-red-500' : 'border-[rgb(var(--color-border))]',
           $slots.prefix && 'pl-10',
           $slots.suffix && 'pr-10',
-          $attrs.class,
         )
       "
     />

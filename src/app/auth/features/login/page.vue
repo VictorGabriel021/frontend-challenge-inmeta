@@ -11,6 +11,8 @@ import Button from '@/components/ui/button/Button.vue'
 
 import { Mail } from 'lucide-vue-next'
 
+defineOptions({ name: 'LoginPage' })
+
 const router = useRouter()
 const { form, errors, login, loading } = useLoginViewModel()
 </script>
@@ -30,6 +32,7 @@ const { form, errors, login, loading } = useLoginViewModel()
             type="email"
             placeholder="Digite seu email"
             :error="!!errors.email"
+            autocomplete="current-email"
           >
             <template #prefix>
               <Mail class="w-4 h-4 text-[rgb(var(--color-foreground))]" /> </template
@@ -42,6 +45,7 @@ const { form, errors, login, loading } = useLoginViewModel()
             v-model="form.password"
             placeholder="Digite sua senha"
             :error="!!errors.password"
+            autocomplete="current-password"
           />
         </FormField>
 

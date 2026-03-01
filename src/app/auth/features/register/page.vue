@@ -11,6 +11,8 @@ import FormField from '@/components/ui/form/FormField.vue'
 import FormLabel from '@/components/ui/form/FormLabel.vue'
 import { Mail, User } from 'lucide-vue-next'
 
+defineOptions({ name: 'RegisterPage' })
+
 const router = useRouter()
 const { form, errors, register, loading } = useRegisterViewModel()
 </script>
@@ -23,7 +25,7 @@ const { form, errors, register, loading } = useRegisterViewModel()
       <h1 class="text-2xl font-bold text-center mb-6">Criar Conta</h1>
 
       <form @submit.prevent="register" class="space-y-4">
-        <FormField :error="errors.email?.[0]">
+        <FormField :error="errors.name?.[0]">
           <FormLabel>Nome</FormLabel>
           <Input v-model="form.name" placeholder="Digite seu nome" :error="!!errors.name">
             <template #prefix>
@@ -38,6 +40,7 @@ const { form, errors, register, loading } = useRegisterViewModel()
             type="email"
             placeholder="Digite seu email"
             :error="!!errors.email"
+            autocomplete="current-email"
           >
             <template #prefix>
               <Mail class="w-4 h-4 text-[rgb(var(--color-foreground))]" /> </template
@@ -50,6 +53,7 @@ const { form, errors, register, loading } = useRegisterViewModel()
             v-model="form.password"
             placeholder="Digite sua senha"
             :error="!!errors.password"
+            autocomplete="new-password"
           />
         </FormField>
 

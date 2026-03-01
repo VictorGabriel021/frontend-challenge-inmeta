@@ -10,6 +10,8 @@ import { toast } from 'vue-sonner'
 
 import { schema } from './login.validations'
 
+import type { LoginFormErrors } from './login.types'
+
 export function useLoginViewModel() {
   const router = useRouter()
   const authStore = useAuthStore()
@@ -19,7 +21,7 @@ export function useLoginViewModel() {
     password: '',
   })
 
-  const errors = ref<Record<string, string[]>>({})
+  const errors = ref<LoginFormErrors>({})
   const loading = ref(false)
 
   watch(
@@ -43,6 +45,7 @@ export function useLoginViewModel() {
 
     if (!result.success) {
       errors.value = result.error.flatten().fieldErrors
+
       return
     }
 
@@ -54,7 +57,7 @@ export function useLoginViewModel() {
       authStore.setAuth(response.user, response.token)
 
       router.replace('/')
-    } catch (error: any) {
+    } catch (error) {
       toast.error('Email ou senha inválidos')
     } finally {
       loading.value = false

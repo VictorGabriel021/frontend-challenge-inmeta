@@ -10,12 +10,8 @@ export type RegisterSchema = z.ZodObject<
 >
 
 export type RegisterForm = z.infer<RegisterSchema>
+export type RegisterFormErrors = Partial<Record<keyof RegisterForm, string[]>>
 
 export type ResponseRegisterForm = {
-  token: string
-  user: {
-    id: string
-    name: string
-    email: string
-  }
+  userId: string
 }

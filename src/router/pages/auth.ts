@@ -1,19 +1,21 @@
 import { LoginPage, RegisterPage } from '@/app/auth'
 
+import HomePage from '@/app/home/page.vue'
+
 export const routes = [
   {
     path: '/login',
-    component: () => LoginPage,
+    component: LoginPage,
     meta: { guestOnly: true },
   },
   {
     path: '/register',
-    component: () => RegisterPage,
+    component: RegisterPage,
     meta: { guestOnly: true },
   },
   {
     path: '/',
-    component: () => import('@/app/home/page.vue'),
+    component: HomePage,
     meta: { requiresAuth: true },
   },
 ]
