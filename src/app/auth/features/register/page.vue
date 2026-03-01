@@ -14,7 +14,7 @@ import { Mail, User } from 'lucide-vue-next'
 defineOptions({ name: 'RegisterPage' })
 
 const router = useRouter()
-const { form, errors, register, loading } = useRegisterViewModel()
+const { form, touched, errors, register, loading } = useRegisterViewModel()
 </script>
 
 <template>
@@ -25,35 +25,42 @@ const { form, errors, register, loading } = useRegisterViewModel()
       <h1 class="text-2xl font-bold text-center mb-6">Criar Conta</h1>
 
       <form @submit.prevent="register" class="space-y-4">
-        <FormField :error="errors.name?.[0]">
+        <FormField :error="touched.name ? errors.name?.[0] : ''">
           <FormLabel>Nome</FormLabel>
-          <Input v-model="form.name" placeholder="Digite seu nome" :error="!!errors.name">
+          <Input
+            v-model="form.name"
+            placeholder="Digite seu nome"
+            :error="!!errors.name && touched.name"
+            @focus="touched.name = true"
+          >
             <template #prefix>
               <User class="w-4 h-4 text-[rgb(var(--color-foreground))]" /> </template
           ></Input>
         </FormField>
 
-        <FormField :error="errors.email?.[0]">
+        <FormField :error="touched.email ? errors.email?.[0] : ''">
           <FormLabel>Email</FormLabel>
           <Input
             v-model="form.email"
             type="email"
             placeholder="Digite seu email"
-            :error="!!errors.email"
+            :error="!!errors.email && touched.email"
             autocomplete="current-email"
+            @focus="touched.email = true"
           >
             <template #prefix>
               <Mail class="w-4 h-4 text-[rgb(var(--color-foreground))]" /> </template
           ></Input>
         </FormField>
 
-        <FormField :error="errors.password?.[0]">
+        <FormField :error="touched.password ? errors.password?.[0] : ''">
           <FormLabel>Senha</FormLabel>
           <PasswordInput
             v-model="form.password"
             placeholder="Digite sua senha"
-            :error="!!errors.password"
+            :error="!!errors.password && touched.password"
             autocomplete="new-password"
+            @focus="touched.password = true"
           />
         </FormField>
 

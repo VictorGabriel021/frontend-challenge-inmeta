@@ -18,6 +18,13 @@ export function useRegisterViewModel() {
     email: '',
     password: '',
   })
+
+  const touched = reactive({
+    name: false,
+    email: false,
+    password: false,
+  })
+
   const errors = ref<RegisterFormErrors>({})
   const loading = ref(false)
 
@@ -37,6 +44,10 @@ export function useRegisterViewModel() {
 
   async function register() {
     errors.value = {}
+
+    touched.email = true
+    touched.password = true
+    touched.name = true
 
     const result = schema.safeParse(form)
 
@@ -62,6 +73,7 @@ export function useRegisterViewModel() {
 
   return {
     form,
+    touched,
     errors,
     register,
     loading,

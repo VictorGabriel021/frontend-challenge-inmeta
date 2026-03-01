@@ -21,6 +21,11 @@ export function useLoginViewModel() {
     password: '',
   })
 
+  const touched = reactive({
+    email: false,
+    password: false,
+  })
+
   const errors = ref<LoginFormErrors>({})
   const loading = ref(false)
 
@@ -40,6 +45,8 @@ export function useLoginViewModel() {
 
   async function login() {
     errors.value = {}
+    touched.email = true
+    touched.password = true
 
     const result = schema.safeParse(form)
 
@@ -66,6 +73,7 @@ export function useLoginViewModel() {
 
   return {
     form,
+    touched,
     errors,
     login,
     loading,

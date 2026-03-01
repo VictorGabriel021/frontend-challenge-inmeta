@@ -15,7 +15,7 @@ defineOptions({
   name: 'InputCustom',
 })
 
-defineEmits(['update:modelValue'])
+defineEmits(['update:modelValue', 'focus'])
 </script>
 
 <template>
@@ -33,6 +33,7 @@ defineEmits(['update:modelValue'])
       :value="modelValue"
       :disabled="disabled"
       @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+      @focus="$emit('focus')"
       :placeholder="placeholder"
       :class="
         cn(
