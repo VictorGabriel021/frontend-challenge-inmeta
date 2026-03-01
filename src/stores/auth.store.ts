@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 
-import type { User } from '@/app/auth/models/user.model'
+import type { UserModel } from '@/app/auth/models/user.model'
 
 interface AuthState {
-  user: User | null
+  user: UserModel | null
   token: string | null
 }
 
@@ -18,7 +18,7 @@ export const useAuthStore = defineStore('auth', {
   },
 
   actions: {
-    setAuth(user: User, token: string) {
+    setAuth(user: UserModel, token: string) {
       this.user = user
       this.token = token
 

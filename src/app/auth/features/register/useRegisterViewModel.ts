@@ -19,6 +19,8 @@ export function useRegisterViewModel() {
     email: '',
     password: '',
   })
+  const errors = ref<Record<string, string[]>>({})
+  const loading = ref(false)
 
   watch(
     form,
@@ -33,9 +35,6 @@ export function useRegisterViewModel() {
     },
     { deep: true },
   )
-
-  const errors = ref<Record<string, string[]>>({})
-  const loading = ref(false)
 
   async function register() {
     errors.value = {}
