@@ -1,7 +1,5 @@
 import { LoginPage, RegisterPage } from '@/app/auth'
 
-import HomePage from '@/app/home/page.vue'
-
 export const routes = [
   {
     path: '/login',
@@ -12,10 +10,5 @@ export const routes = [
     path: '/register',
     component: RegisterPage,
     meta: { guestOnly: true },
-  },
-  {
-    path: '/',
-    component: HomePage,
-    meta: { requiresAuth: true },
   },
 ]

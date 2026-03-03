@@ -1,4 +1,4 @@
-import { MyCardsPage } from '@/app/cards/index'
+import { MyCardsPage } from '@/app/cards'
 
 export const routes = [
   {
