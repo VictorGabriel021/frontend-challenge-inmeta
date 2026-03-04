@@ -26,6 +26,7 @@ O sistema permite visualizar trocas disponíveis no marketplace, criar novas sol
 - ✅ Atualização automática da lista após criação/exclusão
 - ✅ Feedback visual com loading states
 - ✅ Toast notifications para ações do usuário
+- ✅ Página de Não Encontrado
 
 ---
 
@@ -86,11 +87,17 @@ A exclusão de trades foi implementada com:
 
 ---
 
-🚀 Melhorias Arquiteturais Futuras
+## 🚀 Melhorias Arquiteturais Futuras
 
 Caso o sistema evoluísse para um produto maior, eu implementaria:
 
-🧭 Navegação Lateral (Layout Autenticado)
+## ✅ Testes
+
+Implementar testes unitários utilizando Jest (ou equivalente como Vitest) para garantir a qualidade e confiabilidade dos componentes Vue 3.
+
+Adicionar testes end-to-end (E2E) utilizando Cypress para validar fluxos completos da aplicação.
+
+## 🧭 Navegação Lateral (Layout Autenticado)
 
 Adicionar um layout com navegação lateral fixa (sidebar) quando o usuário estiver autenticado, permitindo organizar melhor as rotas do sistema, como por exemplo:
 
@@ -106,7 +113,7 @@ Configurações
 
 Isso melhora UX, escalabilidade de rotas e organização estrutural da aplicação.
 
-✅ Validação de Formulários
+## ✅ Validação de Formulários
 
 Em um cenário com formulários mais complexos (cadastro, edição de perfil, autenticação, etc.), seria recomendado utilizar uma biblioteca de validação como:
 
@@ -122,11 +129,7 @@ Melhor controle de erros de formulário
 
 Escalabilidade conforme o sistema cresce
 
-🚫 Página 404 (Not Found)
-
-Adicionar uma rota fallback (NotFound) para capturar URLs inválidas, melhorando a experiência do usuário e deixando o roteamento mais robusto.
-
-⚡ Cache e Gerenciamento de Estado com TanStack Query
+## ⚡ Cache e Gerenciamento de Estado com TanStack Query
 
 Para otimização de performance e controle de cache, seria interessante utilizar:
 
@@ -150,10 +153,18 @@ Isso tornaria o controle de loading, erro e cache mais robusto e simplificaria p
 
 ```bash
 git clone https://github.com/VictorGabriel021/frontend-challenge-inmeta.git
+```
 
-2️⃣ Instalar dependências
+### 2️⃣ Instalar dependências
+
+```bash
+Node >= 18.x
+
 npm install
+```
 
-3️⃣ Rodar em ambiente de desenvolvimento
+### 3️⃣ Rodar em ambiente de desenvolvimento
+
+```bash
 npm run dev
 ```
