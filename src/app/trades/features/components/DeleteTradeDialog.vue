@@ -3,7 +3,7 @@ import Button from '@/components/ui/button/Button.vue'
 import Dialog from '@/components/ui/dialog/Dialog.vue'
 import DialogContent from '@/components/ui/dialog/DialogContent.vue'
 
-import type { useMarketplaceViewModel } from '../marketplace/useMarketplaceViewModel'
+import type { useMarketplaceViewModel } from '../trades/useMarketplaceViewModel'
 
 const { open, tradeId, vm } = defineProps<{
   open: boolean

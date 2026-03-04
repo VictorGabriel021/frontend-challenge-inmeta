@@ -1,20 +1,6 @@
 import http from '@/core/http/axios'
 
-import type { TradeModel } from '@/app/marketplace/models/trade.model'
-
-export interface TradesResponse {
-  list: TradeModel[]
-  rpp: number
-  page: number
-  more: boolean
-}
-
-export interface CreateTradePayload {
-  cards: {
-    cardId: string
-    type: 'OFFERING' | 'RECEIVING'
-  }[]
-}
+import type { CreateTradePayload, TradesResponse } from '@/app/trades/features/trades/trades.types'
 
 export const tradesService = {
   async getAll(page = 1, rpp = 10): Promise<TradesResponse> {

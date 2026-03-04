@@ -1,15 +1,11 @@
+import type { CardModel } from '@/app/cards/models/card.model'
+
 export interface TradeCard {
   id: string
   cardId: string
   tradeId: string
   type: 'OFFERING' | 'RECEIVING'
-  card: {
-    id: string
-    name: string
-    description: string
-    imageUrl: string
-    createdAt: string
-  }
+  card: CardModel
 }
 
 export interface TradeModel {

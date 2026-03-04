@@ -47,7 +47,6 @@ defineEmits(['update:modelValue', 'focus'])
       "
     />
 
-    <!-- Suffix -->
     <span v-if="$slots.suffix" class="absolute right-3 top-1/2 -translate-y-1/2">
       <slot name="suffix" />
     </span>

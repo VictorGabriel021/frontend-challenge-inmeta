@@ -33,7 +33,7 @@ onMounted(() => {
 <template>
   <div class="container mx-auto py-10 px-2 max-w-250">
     <div class="flex justify-between flex-wrap gap-2 mb-8">
-      <h1 class="text-2xl font-bold">Marketplace</h1>
+      <h1 class="text-2xl font-bold">Solicitações em Aberto</h1>
 
       <Button v-if="user?.id" @click="open = true"> Solicitação de Troca </Button>
     </div>
@@ -78,14 +78,10 @@ onMounted(() => {
     </div>
 
     <div v-if="vm.state.more" class="flex justify-center mt-10">
-      <button
-        @click="vm.loadMore"
-        :disabled="vm.state.loadingMore"
-        class="px-6 py-2 border rounded-lg flex items-center gap-2"
-      >
+      <Button variant="outline" @click="vm.loadMore" :disabled="vm.state.loadingMore">
         <Loader2 v-if="vm.state.loadingMore" class="w-4 h-4 animate-spin" />
         {{ vm.state.loadingMore ? 'Carregando...' : 'Carregar mais' }}
-      </button>
+      </Button>
     </div>
 
     <AddTradeDialog v-model:open="open" :vm="vm" />
