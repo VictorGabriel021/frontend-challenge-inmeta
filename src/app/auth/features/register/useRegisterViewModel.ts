@@ -63,7 +63,7 @@ export function useRegisterViewModel() {
       await authService.register(result.data)
 
       toast.success('Conta criada com sucesso!')
-      router.replace('/')
+      router.replace('/login')
     } catch (error) {
       toast.error('Erro ao registrar')
     } finally {

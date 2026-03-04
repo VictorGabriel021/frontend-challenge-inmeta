@@ -15,14 +15,19 @@ themeStore.applyTheme()
 <template>
   <MainNavbar v-if="useAuthStore().isAuthenticated" />
 
-  <button
-    v-else
-    @click="themeStore.toggleTheme()"
-    class="absolute top-4 right-4 p-2 rounded-md hover:bg-muted transition cursor-pointer hover:opacity-80"
-  >
-    <Sun v-if="themeStore.theme === 'dark'" class="w-5 h-5" />
-    <Moon v-else class="w-5 h-5" />
-  </button>
+  <div class="absolute top-4 right-4 flex items-center gap-4" v-else>
+    <p class="text-center text-sm text-muted-foreground hover:underline">
+      <router-link to="/login">Login</router-link>
+    </p>
+
+    <button
+      @click="themeStore.toggleTheme()"
+      class="p-2 rounded-md hover:bg-muted transition cursor-pointer hover:opacity-80"
+    >
+      <Sun v-if="themeStore.theme === 'dark'" class="w-5 h-5" />
+      <Moon v-else class="w-5 h-5" />
+    </button>
+  </div>
 
   <router-view />
 
