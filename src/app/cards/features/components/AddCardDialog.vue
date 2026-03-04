@@ -47,10 +47,7 @@ async function handleAdd() {
 
 <template>
   <Dialog :open="open" @update:open="emit('update:open', $event)">
-    <DialogContent
-      class="w-[90vw] h-[85vh] flex flex-col"
-      @update:open="emit('update:open', $event)"
-    >
+    <DialogContent class="w-full h-[85vh] flex flex-col" @update:open="emit('update:open', $event)">
       <h2 class="text-xl font-semibold mb-4">Adicionar Cartas</h2>
 
       <div v-if="state.loading" class="flex-1 flex items-center justify-center">

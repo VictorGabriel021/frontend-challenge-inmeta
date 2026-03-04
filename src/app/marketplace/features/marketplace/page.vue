@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 
-import { ArrowRight, Loader2 } from 'lucide-vue-next'
+import { ArrowRight, Loader2, Trash2 } from 'lucide-vue-next'
 
 import { useAuthStore } from '@/stores/auth.store'
 
 import { useMarketplaceViewModel } from './useMarketplaceViewModel'
 
 import AddTradeDialog from '../components/AddTradeDialog.vue'
+import DeleteTradeDialog from '../components/DeleteTradeDialog.vue'
 import Button from '@/components/ui/button/Button.vue'
 
 defineOptions({ name: 'MarketplacePage' })
@@ -16,6 +17,13 @@ const vm = useMarketplaceViewModel()
 const { user } = useAuthStore()
 
 const open = ref(false)
+const openDeleteModal = ref(false)
+const tradeToDelete = ref<string>('')
+
+function handleOpenDeleteModal(tradeId: string) {
+  tradeToDelete.value = tradeId
+  openDeleteModal.value = true
+}
 
 onMounted(() => {
   vm.fetchInitial()
@@ -61,10 +69,10 @@ onMounted(() => {
 
         <button
           v-if="trade.userId === user?.id"
-          @click="vm.deleteTrade(trade.id)"
+          @click="handleOpenDeleteModal(trade.id)"
           class="absolute top-4 right-4 text-red-500 text-sm"
         >
-          Delete
+          <Trash2 class="w-6 h-6 cursor-pointer opacity-80" />
         </button>
       </div>
     </div>
@@ -81,5 +89,6 @@ onMounted(() => {
     </div>
 
     <AddTradeDialog v-model:open="open" :vm="vm" />
+    <DeleteTradeDialog v-model:open="openDeleteModal" :trade-id="tradeToDelete" :vm="vm" />
   </div>
 </template>
