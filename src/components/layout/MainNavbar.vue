@@ -19,9 +19,18 @@ function handleLogout() {
 
 <template>
   <nav
-    class="flex items-center justify-between px-6 py-4 border-b border-[rgb(var(--color-border))] bg-[rgb(var(--color-card))]"
+    class="flex items-center justify-between flex-col md:flex-row gap-4 px-6 py-4 border-b border-[rgb(var(--color-border))] bg-[rgb(var(--color-card))]"
   >
     <span class="font-semibold">Cards Marketplace</span>
+
+    <ul class="flex items-center gap-6">
+      <li>
+        <router-link to="/">Marketplace</router-link>
+      </li>
+      <li>
+        <router-link to="/my-cards">Minhas Cartas</router-link>
+      </li>
+    </ul>
 
     <div class="flex items-center gap-4">
       <button

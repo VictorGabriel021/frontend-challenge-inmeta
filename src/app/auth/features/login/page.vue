@@ -64,6 +64,10 @@ const { form, touched, errors, login, loading } = useLoginViewModel()
             Criar conta
           </span>
         </p>
+
+        <p class="text-sm text-center mt-4 text-muted-foreground hover:underline">
+          <router-link to="/">Ir para o Marketplace</router-link>
+        </p>
       </form>
     </div>
   </div>
