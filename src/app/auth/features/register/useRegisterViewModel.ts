@@ -65,7 +65,7 @@ export function useRegisterViewModel() {
       toast.success('Conta criada com sucesso!')
       router.replace('/login')
     } catch (error) {
-      toast.error('Erro ao registrar')
+      toast.error('Erro ao registrar ou usuário já existe.')
     } finally {
       loading.value = false
     }
